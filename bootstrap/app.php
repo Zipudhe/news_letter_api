@@ -16,6 +16,13 @@ $app = new Illuminate\Foundation\Application(
 );
 
 /*
+| Adds migration generator to create migrations from exsisting database
+|
+*/
+$app->register(\LaravelMigrationGenerator\LaravelMigrationGeneratorProvider::class);
+
+
+/*
 |--------------------------------------------------------------------------
 | Bind Important Interfaces
 |--------------------------------------------------------------------------

@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Api\V1\PessoasController;
+use App\Http\Controllers\PessoaController;
+use App\Http\Controllers\VagaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::group(['namespace' => 'App\Http\Controllers\V1'], function() {
-    Route::apiResource('pessoas', PessoasController::class);
-});
+Route::resources([
+    "pessoa" => PessoaController::class,
+    "vaga" => VagaController::class,
+]);

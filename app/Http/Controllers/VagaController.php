@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Models\Pessoa;
+use App\Models\Vaga;
 
-class PessoaController extends Controller
+class VagaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,6 @@ class PessoaController extends Controller
     public function index()
     {
         //
-        return Pessoa::all();
     }
 
     /**
@@ -23,7 +21,6 @@ class PessoaController extends Controller
     public function create()
     {
         //
-        echo "Should create pessoa";
     }
 
     /**
@@ -32,12 +29,10 @@ class PessoaController extends Controller
     public function store(Request $request)
     {
         //
-        // echo $request->getPayload();
         $content = json_decode($request->getContent(), true);
 
         if($content) {
-            // var_dump($content["stack"]);
-            Pessoa::create($content);
+            Vaga::create($content);
         }
     }
 
@@ -46,8 +41,7 @@ class PessoaController extends Controller
      */
     public function show(string $id)
     {
-        $pessoa = DB::table("Pessoas")->find($id);
-        return $pessoa;
+        //
     }
 
     /**
@@ -64,23 +58,6 @@ class PessoaController extends Controller
     public function update(Request $request, string $id)
     {
         //
-        $content = json_decode($request->getContent(), true);
-
-        if(empty($content)) {
-            return response("Missing body content", 422);
-        }
-
-        $pessoa = Pessoa::find($id);
-
-        if(!$pessoa) {
-            return response("data not found", 404);
-        }
-
-        foreach($content as $key => $value) {
-            $pessoa->$key = $value;
-        }
-
-        $pessoa->save();
     }
 
     /**
@@ -89,6 +66,5 @@ class PessoaController extends Controller
     public function destroy(string $id)
     {
         //
-        Pessoa::destroy($id);
     }
 }
